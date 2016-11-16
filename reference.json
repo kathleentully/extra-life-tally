@@ -1,0 +1,14 @@
+/*Example data format*/
+{
+    "team number": 0,
+    "teams":{
+        "New York": [
+            {"displayName": "Jennifer Lawrence", "participantID": 0},
+            {"displayName": "George Takei", "participantID": 1}
+        ],
+        "Seattle": [
+            {"displayName": "Alec Baldwin", "participantID": 2},
+            {"displayName": "Oprah Winfrey", "participantID": 3}
+        ]
+    }
+}
