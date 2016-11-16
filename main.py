@@ -13,16 +13,17 @@ def getTeamRoster():
     return teamRosterWithMoneyRaised
 
 def getSubTeamTotals(teamRoster):
-    subteams = {}
+    subteams = []
     for subteamName, subteamParticipants in reference['teams'].iteritems():
-        subteams[subteamName] = {'raised': 0, 'goal': 0}
+        subteamValues = {'raised': 0, 'goal': 0}
         for participant in subteamParticipants:
-            subteams[subteamName]['raised'] += teamRoster[participant['participantID']]['totalRaisedAmount']
-            subteams[subteamName]['goal'] += teamRoster[participant['participantID']]['fundraisingGoal']
+            subteamValues['raised'] += teamRoster[participant['participantID']]['totalRaisedAmount']
+            subteamValues['goal'] += teamRoster[participant['participantID']]['fundraisingGoal']
+        subteams.append((subteamName, subteamValues))
     return subteams
 
 def sortResults(subteamTotals):
-    return sorted(subteamTotals.items(), key = lambda item: item[1]['raised'], reverse = True)
+    return sorted(subteamTotals, key = lambda item: item[1]['raised'], reverse = True)
 
 def printResults(subteamTotals):
     totalJson = json.loads(urllib.urlopen(teamUrl.format(teamId = reference['team number'])).read())
