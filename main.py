@@ -25,8 +25,11 @@ def sortResults(subteamTotals):
     return sorted(subteamTotals.items(), key = lambda item: item[1]['raised'], reverse = True)
 
 def printResults(subteamTotals):
+    totalJson = json.loads(urllib.urlopen(teamUrl.format(teamId = reference['team number'])).read())
+    print('TOTAL          ${0:.2f} / ${1:.2f}'.format(totalJson['totalRaisedAmount'],totalJson['fundraisingGoal']))
+    print('='*35)
     for team in sortResults(subteamTotals):
-        print('{0:14} ${1} / ${2}'.format(team[0], team[1]['raised'], team[1]['goal']))
+        print('{0:14} ${1:.2f} / ${2:.2f}'.format(team[0], team[1]['raised'], team[1]['goal']))
 
 if __name__ == "__main__":
     printResults(getSubTeamTotals(getTeamRoster()))
