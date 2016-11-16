@@ -1,0 +1,1 @@
+Used to split an Extra Life team into sub-teams for internal competition. See reference.json for data input format.
