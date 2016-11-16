@@ -26,10 +26,10 @@ def sortResults(subteamTotals):
 
 def printResults(subteamTotals):
     totalJson = json.loads(urllib.urlopen(teamUrl.format(teamId = reference['team number'])).read())
-    print('TOTAL          ${0:.2f} / ${1:.2f}'.format(totalJson['totalRaisedAmount'],totalJson['fundraisingGoal']))
-    print('='*35)
+    print('TOTAL          ${0:8,.2f} /${1:8,.2f}'.format(totalJson['totalRaisedAmount'],totalJson['fundraisingGoal']))
+    print('='*36)
     for team in sortResults(subteamTotals):
-        print('{0:14} ${1:.2f} / ${2:.2f}'.format(team[0], team[1]['raised'], team[1]['goal']))
+        print('{0:14} ${1:8,.2f} / ${2:8,.2f}'.format(team[0], team[1]['raised'], team[1]['goal']))
 
 if __name__ == "__main__":
     printResults(getSubTeamTotals(getTeamRoster()))
